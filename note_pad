@@ -1,0 +1,94 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace ConsoleApp5
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            
+            Console.WriteLine("NOT DEFTERI UYGULAMASINA HOSGELDINIZ");
+            while (true)
+            {
+                Console.WriteLine("YAPMAK ISTEDIGINIZ ISLEM NEDIR");
+                int islem;
+                Console.WriteLine("1) YENI NOT OLUSTUR 2) ESKI NOTU AC 3)NOTU SIL 4)NOTLARA BAK");
+                islem = Convert.ToInt32(Console.ReadLine());
+                switch (islem)
+                {
+                    case 1:
+                        Console.WriteLine("OLUSTURALACAK YENI NOTUN ISMINI GIRINIZ ISMIN SONUNA .TXT EKLEYINIZ");
+                        string not_isim;
+                        not_isim = Console.ReadLine();
+                        string not;
+
+                        not = Console.ReadLine();
+                        if (!File.Exists(not_isim))
+                        {
+                            File.Create(not_isim).Close(); // Dosyayı oluşturur
+                        }
+                        using (StreamWriter writer = new StreamWriter(not_isim, append: true))
+                        {
+                            writer.WriteLine(not);
+                        }
+                        break;
+                    case 2:
+                        Console.WriteLine("ACILACAK NOTUN ISMINI GIRINIZ SONUNDA .TXT OLSUN");
+                        string dosya_ismi;
+                        dosya_ismi = Console.ReadLine();
+                        if (!File.Exists(dosya_ismi))
+                        {
+                            Console.WriteLine("NOT SAYFASI BULUNAMADI ");
+                            break;
+                        }
+                        string dosyaIcerigi = File.ReadAllText(dosya_ismi);
+                        Console.WriteLine("Dosya İçeriği:\n" + dosyaIcerigi);
+                        break;
+                    case 3:
+                        Console.WriteLine("SILINECEK DOSYANIN ISMINI GIRINIZ SONUNDA .TXT BULUNMALI");
+                        string dosya_ismi_silinecek;
+                        dosya_ismi_silinecek = Console.ReadLine();
+                        File.Delete(dosya_ismi_silinecek);
+                        Console.WriteLine("DOSYA BASARIYLA SILINDI");
+                        break;
+                    case 4:
+                        Console.WriteLine("ACILACAK NOTUN ISMINI GIRINIZ SONUNDA .TXT OLSUN");
+                        string dosya_ismi1;
+                        //string dosyaIcerigi;
+                        dosya_ismi1 = Console.ReadLine();
+                        if (!File.Exists(dosya_ismi1))
+                        {
+                            Console.WriteLine("NOT BULUNAMADI");
+                            break;
+                        }
+                        string dosyaIcerigi1 = File.ReadAllText(dosya_ismi1);
+                        Console.WriteLine("Dosya İçeriği:\n" + dosyaIcerigi1);
+                        string not1;
+
+                        not1 = Console.ReadLine();
+                        using (StreamWriter writer = new StreamWriter(dosya_ismi1, append: true))
+                        {
+                            writer.WriteLine(not1);
+                        }
+
+
+                        break;
+
+
+
+
+
+
+
+                }
+            }
+
+
+        }
+    }
+}
